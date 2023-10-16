@@ -2,18 +2,27 @@
 	"project_name": "Purpleblob Generic FullStack project",
 	"project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
 	"django_app_name": "{{ cookiecutter.project_slug }}",
-	"gitlab_ci": true,
 	"postgres_version": ["14", "15", "16"],
 	"db_user": "admin",
 	"db_password": "admin",
+	"configure_celery": false,
 	"mq_user": "admin",
 	"mq_password": "admin",
-	"configure_celery": false,
 	"default_permission_class": ["AllowAny", "IsAuthenticated", "IsAdminUser", "IsAuthenticatedOrReadOnly"],
 	"initialize_git_repo": true,
 	"configure_angular_project": true,
 	"__prompts__": {
-        "gitlab_ci": "Would you like to use Gitlab CI?",
-		"configure_celery": "Would you like to configure Celery?"
+		"project_name": "The name of the project (it will only be used to set the admin site title)",
+		"project_slug": "Do you want to rename the folder containing the project?",
+		"django_app_name": "Set the name of the default Django app",
+		"postgres_version": "Select the PostgreSQL version",
+		"db_user": "Enter the database user",
+		"db_password": "Enter the database password",
+		"configure_celery": "Will you use Celery on this project?",
+		"mq_user": "Enter the RabbitMQ user (only needed if you are using Celery)",
+		"mq_password": "Enter the RabbitMQ password (only needed if you are using Celery)",
+		"default_permission_class": "Select the default permission class",
+		"initialize_git_repo": "Would you like to initialize a Git repository?",
+		"configure_angular_project": "Would you like to configure an Angular project?"
     }
 }
