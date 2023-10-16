@@ -1,12 +1,20 @@
 ### How to use
-1. **SSH**
-```
-cookiecutter git@dev2.purpleblob.net:purpleblob/django-project-generator.git
-```
-2. **HTTPS**
-```
-cookiecutter https://dev2.purpleblob.net/purpleblob/django-project-generator.git
-```
+- For the first time:
+    1. **SSH**
+    ```
+    cookiecutter git@dev2.purpleblob.net:purpleblob/django-project-generator.git
+    ```
+    2. **HTTPS**
+    ```
+    cookiecutter https://dev2.purpleblob.net/purpleblob/django-project-generator.git
+    ```
+
+- If we already did it once our cookiecutter project gets saved in `~/cookiecutters/` directory. So assuming there are no changes in this repo:
+    ```
+    cookiecutter  ~/.cookiecutters/django-project-generator
+    ```
+
+> We can always use the first command and we will get prompted if it should get pulled again
 
 
 ### TODOs:
