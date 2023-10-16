@@ -1,6 +1,11 @@
 ### How to use
+1. **SSH**
 ```
-cookiecutter git+ssh://git@dev2.purpleblob.net:purpleblob/django-project-generator.git
+cookiecutter git@dev2.purpleblob.net:purpleblob/django-project-generator.git
+```
+2. **HTTPS**
+```
+cookiecutter https://dev2.purpleblob.net/purpleblob/django-project-generator.git
 ```
 
 
