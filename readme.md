@@ -1,5 +1,7 @@
 ### How to use
-```cookiecutter git+ssh://git@dev2.purpleblob.net:purpleblob/django-project-generator.git```
+```
+cookiecutter git+ssh://git@dev2.purpleblob.net:purpleblob/django-project-generator.git
+```
 
 
 ### TODOs:
