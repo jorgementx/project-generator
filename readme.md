@@ -17,7 +17,7 @@
 
 > We can always use the first command and we will get prompted if it should get pulled again
 
-## Instalation
+## Installation
 
 ```
 pip install cookiecutter
