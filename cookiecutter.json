@@ -1,0 +1,19 @@
+{
+	"project_name": "Purpleblob Generic FullStack project",
+	"project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+	"django_app_name": "{{ cookiecutter.project_slug }}",
+	"gitlab_ci": true,
+	"postgres_version": ["14", "15", "16"],
+	"db_user": "admin",
+	"db_password": "admin",
+	"mq_user": "admin",
+	"mq_password": "admin",
+	"configure_celery": false,
+	"default_permission_class": ["AllowAny", "IsAuthenticated", "IsAdminUser", "IsAuthenticatedOrReadOnly"],
+	"initialize_git_repo": true,
+	"configure_angular_project": true,
+	"__prompts__": {
+        "gitlab_ci": "Would you like to use Gitlab CI?",
+		"configure_celery": "Would you like to configure Celery?"
+    }
+}
