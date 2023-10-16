@@ -1,4 +1,5 @@
-### How to use
+## How to use
+
 - For the first time:
     1. **SSH**
     ```
@@ -16,8 +17,15 @@
 
 > We can always use the first command and we will get prompted if it should get pulled again
 
+## Instalation
 
-### TODOs:
+```
+pip install cookiecutter
+```
+
+
+## TODOs:
+
 - [ ] add support for docker image creation (if possible):
     - dynamic entrypoint
     - supervisor conf
