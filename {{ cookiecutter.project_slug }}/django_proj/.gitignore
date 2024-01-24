@@ -72,7 +72,7 @@ cover/
 
 # Django stuff:
 *.log
-{%- if true -%}main/local_settings.py{% endif %}
+{% if true %}main/local_settings.py{% endif %}
 staticfiles/
 mediafiles/
 db.sqlite3
