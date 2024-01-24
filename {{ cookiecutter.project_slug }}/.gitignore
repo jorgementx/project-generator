@@ -97,7 +97,5 @@ fabric.properties
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
 
-/django_proj/main/local_settings.py
+### Docker template
 /docker-compose-test.yaml
-/django_proj/staticfiles/
-/django_proj/mediafiles/

@@ -14,6 +14,7 @@ This readme has been generated automatically.
      - Database password
      - Database host
 6. Apply the migrations: `python manage.py migrate`
+    > In case you are creating the project from scratch, you will need to create the migrations first: `python manage.py makemigrations`
 7. Create a superuser: `python manage.py createsuperuser`
 8. All set, from now the backend development server can be started using: `python manage.py runserver`
 
