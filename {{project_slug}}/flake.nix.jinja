@@ -1,0 +1,42 @@
+{
+  description = "Dev shell for {{project_name}} app";
+
+  inputs = {
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+  };
+
+  outputs = { self, nixpkgs, flake-utils }:
+    flake-utils.lib.eachDefaultSystem (system: let
+      pkgs = import nixpkgs {
+        inherit system;
+      };
+    in rec {
+      devShell = pkgs.mkShell {
+        name = "django-postgres-dev-shell";
+
+        buildInputs = [
+          pkgs.python{{python_version|lower|replace('.', '')}}
+          pkgs.uv
+          pkgs.nodejs_18
+          pkgs.docker-buildx
+        ];
+
+        shellHook = ''
+          docker compose up -d
+          echo "Node `node --version`"
+          echo `python --version`
+          echo `uv --version`
+
+          cleanup() {
+            if [ -z "$STARTED_VIA_DIRENV" ]; then
+              docker compose down
+            fi
+          }
+
+          trap cleanup EXIT
+        '';
+       };
+
+   });
+}

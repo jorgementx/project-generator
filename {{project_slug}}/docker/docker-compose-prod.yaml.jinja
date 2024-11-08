@@ -1,0 +1,31 @@
+name: {{project_slug}}
+# You should the gitlab repo's group (or change the name in case it is different). GITLAB_REPO=group/project
+services:
+  {{project_slug}}:
+    image: docker-registry.dev2.purpleblob.net/{{project_slug}}:0.0.0
+    ports:
+      - "8080:8080"
+    environment:
+      - "DEBUG=False"
+      - "SECRET_KEY=changeme"
+      - "ALLOWED_HOSTS='changeme', 'changeme2'"
+      - "CSRF_TRUSTED_ORIGINS='https://change.me', 'http://change.me2'"
+      - "MEDIA_URL=https://change.me/media/"
+      - "DB_HOST=postgresql"
+      - "DB_USER=changeme"
+      - "DB_PASSWORD=changeme"
+      - "DB_NAME=changeme"
+    links:
+      - postgresql
+    volumes:
+      - "./mediafiles:/home/app/mediafiles"
+
+  postgresql:
+    image: postgres:{{postgres_version}}
+    environment:
+      - "POSTGRES_USER=admin"
+      - "POSTGRES_PASSWORD=changeme"
+      - "POSTGRES_DB=changeme"
+      - "PGDATA=/var/lib/postgresql/data/pgdata"
+    volumes:
+      - "./pgdata:/var/lib/postgresql/data"

@@ -1,0 +1,14 @@
+from rest_framework import serializers
+from {{ django_app_name }}.models import User
+
+class UserInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        exclude = [
+            "password",
+            "groups",
+            "user_permissions",
+            "is_staff",
+            "is_active",
+            "is_superuser",
+        ]
