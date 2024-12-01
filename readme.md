@@ -13,6 +13,7 @@ pipx install copier
 ## TODOs:
 
 - [ ] Add super quick configuration as default with an option to do the current advanced one. Just prompt for the project name and set the defaults for everything else.
+- [ ] GeoDjango support
 - [ ] Configure email backend
 - [ ] add support for docker image creation (if possible):
     - dynamic entrypoint
