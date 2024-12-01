@@ -63,15 +63,11 @@ default_permission_class:
   type: str
   help: "What is the default permission class?"
   choices:
-    AllowAny: &allowany_text |
-      Allow any user, authenticated or not, to access the view.
-    IsAuthenticated: |
-      Allow any authenticated user to access the view.
-    IsAuthenticatedOrReadOnly: |
-      The request is authenticated as a user, or is a read-only request.
-    IsAdminUser: |
-      Allow only admin users to access the view.
-  default: *allowany_text
+    - AllowAny
+    - IsAuthenticated
+    - IsAuthenticatedOrReadOnly
+    - IsAdminUser
+  default: AllowAny
 initializse_git_repo:
   type: bool
   help: "Initialize a Git repository?"
