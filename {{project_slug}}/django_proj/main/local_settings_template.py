@@ -20,7 +20,6 @@ DATABASES = {
     }
 }
 
-CELERY_BROKER_URL = 'amqp://user:password@localhost:5672//'
 
 
 
