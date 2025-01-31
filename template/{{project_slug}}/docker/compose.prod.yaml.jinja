@@ -9,7 +9,7 @@ services:
     env_file:
       - db.env
       - app.env
-    links:
+    depends_on:
       - postgresql
     volumes:
       - "./mediafiles:/home/app/mediafiles"
