@@ -1,3 +1,5 @@
+[![Copier](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/copier-org/copier/master/img/badge/badge-grayscale-inverted-border-purple.json)](https://github.com/copier-org/copier)
+
 ## How to use
 
 ```
@@ -15,11 +17,26 @@ copier copy --trust git@dev2.purpleblob.net:purpleblob/django-project-generator.
 pipx install copier
 ```
 
+## Postinstall
+
+Steps to get the django server running after generating the project.
+
+> `docker` and `uv` are needed
+
+```
+cd <my-project>/django_proj
+uv sync
+docker compose up -d
+uv run python manage.py makemigrations
+uv run python manage.py migrate
+uv run python manage.py createsuperuser
+uv run python manage.py runserver
+```
+
 ## TODOs:
 
 > In order of priority
 
-- [ ] Configure django settings.py with django-environ instead of current local_settings.py
 - [ ] Configure email backend
 - [ ] Add super quick configuration as default with an option to do the current advanced one. Just prompt for the project name and set the defaults for everything else.
 - [ ] GeoDjango support
