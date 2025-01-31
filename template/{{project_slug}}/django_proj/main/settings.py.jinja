@@ -148,3 +148,9 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGIN_REGEXES = [".*"]
 
 # Email configuration
+EMAIL_CONFIG = env.email(
+    'EMAIL_URL',
+    default='consolemail://user:password@localhost:25'
+)
+vars().update(EMAIL_CONFIG)
+DEFAULT_FROM_EMAIL = vars()['EMAIL_HOST_USER']

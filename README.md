@@ -27,22 +27,21 @@ Steps to get the django server running after generating the project.
 cd <my-project>/django_proj
 uv sync
 docker compose up -d
-uv run python manage.py makemigrations
-uv run python manage.py migrate
-uv run python manage.py createsuperuser
-uv run python manage.py runserver
+uv run manage.py makemigrations
+uv run manage.py migrate
+uv run manage.py createsuperuser
+uv run manage.py runserver
 ```
 
 ## TODOs:
 
 > In order of priority
 
-- [ ] Configure email backend
-- [ ] Add super quick configuration as default with an option to do the current advanced one. Just prompt for the project name and set the defaults for everything else.
-- [ ] GeoDjango support
-- [ ] add support for docker image creation (if possible):
+- GeoDjango support
+- Add super quick configuration as default with an option to do the current advanced one. Just prompt for the project name and set the defaults for everything else.
+- Add support for docker image creation (if possible):
   - dynamic entrypoint
   - supervisor conf
   - nginx conf
   - dockerfile
-- [ ] Enable autopulling of newer images with watchtower
+- Enable autopulling of newer images with watchtower
