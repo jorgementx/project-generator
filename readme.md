@@ -1,7 +1,7 @@
 ## How to use
 
 ```
-copier copy git@dev2.purpleblob.net:purpleblob/django-project-generator.git .
+copier copy --trust git@dev2.purpleblob.net:purpleblob/django-project-generator.git .
 ```
 > More information in our [wiki](https://wiki.purpleblob.net/es/coding/django/copier)
 
