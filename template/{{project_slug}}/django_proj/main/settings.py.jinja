@@ -1,6 +1,7 @@
 from pathlib import Path
 import environ
 import os
+{% if geodjango %}from glob import glob{% endif %}
 
 env = environ.Env(
     DEBUG=(bool, False)
@@ -25,6 +26,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    {% if geodjango -%}
+    'django.contrib.gis',
+    {%- endif %}
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
@@ -154,3 +158,8 @@ EMAIL_CONFIG = env.email(
 )
 vars().update(EMAIL_CONFIG)
 DEFAULT_FROM_EMAIL = vars()['EMAIL_HOST_USER']
+
+{% if geodjango -%}
+GDAL_LIBRARY_PATH = glob('/usr/lib/libgdal.so.*')[0]
+GEOS_LIBRARY_PATH = glob('/usr/lib/libgeos_c.so.*')[0]
+{%- endif %}

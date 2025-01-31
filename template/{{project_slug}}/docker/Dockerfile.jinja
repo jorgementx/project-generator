@@ -40,7 +40,11 @@ ENV PATH="${APP_HOME}/venv/bin:$PATH"
 
 RUN apk update && \
     apk add bash nginx libgcc libpq
-    
+
+{% if geodjango -%}
+RUN apk add --no-cache geos gdal
+{%- endif %}
+
 COPY --chown=app docker/.well-known/ .well-known/
 COPY --chown=app --chmod=744 docker/docker-entrypoint.sh .
 COPY --chown=app docker/supervisor.conf .

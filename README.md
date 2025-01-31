@@ -37,7 +37,7 @@ uv run manage.py runserver
 
 > In order of priority
 
-- GeoDjango support
+- Task to automate GDAL and GEOS installation in case they are not available in the system.
 - Add super quick configuration as default with an option to do the current advanced one. Just prompt for the project name and set the defaults for everything else.
 - Add support for docker image creation (if possible):
   - dynamic entrypoint

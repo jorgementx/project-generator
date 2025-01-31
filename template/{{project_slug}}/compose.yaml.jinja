@@ -1,6 +1,6 @@
 services:
   postgresql:
-    image: postgres:{{ postgres_version }}
+    image: {% if geodjango %}postgis/postgis:{{postgres_version}}{% if postgres_version!='latest' %}-master{% endif %}{% else %}postgres:{{ postgres_version }}{% endif %}
     ports:
     - "5432:5432"
     environment:

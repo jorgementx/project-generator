@@ -15,7 +15,7 @@ services:
       - "./mediafiles:/home/app/mediafiles"
 
   postgresql:
-    image: postgres:{{postgres_version}}
+    image: {% if geodjango %}postgis/postgis:{{postgres_version}}{% if postgres_version!='latest' %}-master{% endif %}{% else %}postgres:{{ postgres_version }}{% endif %}
     env_file:
       - db.env
     healthcheck:

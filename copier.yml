@@ -46,9 +46,13 @@ python_version:
 #     - "20"
 #     - "22"
 #   default: "20"
+geodjango:
+  type: bool
+  help: "Do you want to enable GeoDjango? GEOS and GDAL need to be installed in your system."
+  default: false
 postgres_version:
   type: str
-  help: Select the PosgreSQL vertion to used
+  help: Select the PosgreSQL version to be used
   choices:
     - "14"
     - "15"
