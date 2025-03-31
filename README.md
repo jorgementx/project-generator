@@ -37,7 +37,14 @@ uv run manage.py runserver
 
 > In order of priority
 
+- Autogenerate frontend Angular 19 project with sane defaults:
+  1. prettier 
+  2. tailwind (optional)
+  3. environments
+  4. ...
+
 - Task to automate GDAL and GEOS installation in case they are not available in the system.
+- Add django watson
 - Add super quick configuration as default with an option to do the current advanced one. Just prompt for the project name and set the defaults for everything else.
 - Add support for docker image creation (if possible):
   - dynamic entrypoint
