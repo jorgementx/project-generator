@@ -5,7 +5,7 @@
 ```
 copier copy --trust git@dev2.purpleblob.net:purpleblob/django-project-generator.git .
 ```
-> More information in our [wiki](https://wiki.purpleblob.net/es/coding/django/copier)
+> More information and project structure in our [wiki](https://wiki.purpleblob.net/es/coding/project-generator)
 
 ## Requirements
 
