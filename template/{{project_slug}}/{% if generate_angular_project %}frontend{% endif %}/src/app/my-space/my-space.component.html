@@ -1,0 +1,42 @@
+<section class="space-y-3 p-8">
+  <article>
+    <header class="font-bold">Authenticated Endpoint:</header>
+    <p>
+      @if (userResource.value(); as user) {
+        <span>
+          {{ user | json }}
+        </span>
+      } @else {
+        <span>Couldn't fetch user data </span>
+      }
+    </p>
+  </article>
+
+  <article>
+    <header class="font-bold">Public Endpoint:</header>
+    <p>
+      @if (externalResource.value(); as external) {
+        <span>
+          {{ external | json }}
+        </span>
+      } @else {
+        <span>Couldn't fetch public data</span>
+      }
+    </p>
+  </article>
+
+  <section class="space-x-3">
+    <button
+      class="cursor-pointer rounded bg-red-600 px-4 py-2 font-bold text-white shadow hover:bg-red-700"
+      (click)="logout()"
+    >
+      Logout
+    </button>
+    <button
+      class="cursor-pointer rounded bg-amber-400 px-4 py-2 font-bold text-white shadow hover:bg-amber-500"
+      (click)="reload()"
+    >
+      Reload
+    </button>
+  </section>
+</section>

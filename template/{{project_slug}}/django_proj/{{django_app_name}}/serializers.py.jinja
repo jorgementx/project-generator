@@ -1,5 +1,15 @@
+from dj_rest_auth.registration.serializers import RegisterSerializer
+from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
+
 from {{ django_app_name }}.models import User
+
+try:
+    from allauth.account.adapter import get_adapter
+except ImportError:
+    raise ImportError('allauth needs to be added to INSTALLED_APPS.')
+
 
 class UserInfoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,7 +18,21 @@ class UserInfoSerializer(serializers.ModelSerializer):
             "password",
             "groups",
             "user_permissions",
-            "is_staff",
             "is_active",
-            "is_superuser",
         ]
+
+
+class CustomRegistrationSerializer(RegisterSerializer):
+    def validate_username(serf, username):
+        if settings.ACCOUNT_UNIQUE_USERNAME:
+            username = get_adapter().clean_username(username)
+        return username
+
+    def validate_email(self, email):
+        email = get_adapter().clean_email(email)
+        if settings.ACCOUNT_UNIQUE_EMAIL:
+            if email and User.objects.filter(email=email).exists():
+                raise serializers.ValidationError(
+                    _('User with this email already exists.'),
+                )
+        return email

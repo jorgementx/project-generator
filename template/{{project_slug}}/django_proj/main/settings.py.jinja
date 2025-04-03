@@ -61,6 +61,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_USER_MODEL_USERNAME_FIELD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_UNIQUE_USERNAME = True
 LOGOUT_ON_PASSWORD_CHANGE = True
 REST_SESSION_LOGIN = False
 
@@ -143,6 +144,10 @@ SPECTACULAR_SETTINGS = {
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
+
+REST_AUTH = {
+    'REGISTER_SERIALIZER': '{{ django_app_name }}.serializers.CustomRegistrationSerializer',
+}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

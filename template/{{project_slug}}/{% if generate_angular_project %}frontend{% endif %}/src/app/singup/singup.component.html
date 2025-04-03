@@ -1,0 +1,49 @@
+<section class="grid h-screen w-screen place-content-center bg-stone-700">
+  <header>
+    <h1 class="mb-4 text-center text-4xl font-bold text-neutral-200">
+      Sign up
+    </h1>
+  </header>
+  <form
+    (submit)="signup()"
+    #form="ngForm"
+    class="flex flex-col gap-1 rounded-3xl bg-stone-600 p-4 text-stone-200 *:border-2 *:border-solid *:border-stone-600 *:bg-stone-500 *:px-2 *:outline-2 *:outline-offset-0 *:outline-none *:focus:outline-stone-500 *:focus:outline-solid"
+  >
+    <input
+      type="email"
+      required
+      placeholder="Email"
+      class="h-11 w-96 rounded-lg rounded-t-2xl"
+      [(ngModel)]="email"
+      name="email"
+    />
+
+    <input
+      type="password"
+      required
+      placeholder="Password"
+      class="h-11 w-96 rounded-lg"
+      [(ngModel)]="password1"
+      name="password1"
+    />
+    <input
+      type="password"
+      required
+      placeholder="Repeat the password"
+      class="h-11 w-96 rounded-lg"
+      [(ngModel)]="password2"
+      name="password2"
+    />
+
+    <button
+      type="submit"
+      class="mt-1 cursor-pointer rounded-md rounded-b-2xl !border-none !bg-rose-700 !py-2 font-semibold transition-colors hover:!bg-rose-600 hover:!shadow-[0_0_20px] hover:shadow-rose-600"
+      [disabled]="!form.valid"
+    >
+      Sign me up!
+    </button>
+  </form>
+  <div class="mt-2 text-center text-sm text-stone-300 underline">
+    <a [routerLink]="['/login']">I already have an account</a>
+  </div>
+</section>

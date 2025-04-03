@@ -38,14 +38,6 @@ python_version:
       value: "3.13"
       validator: "{% if django_version == '4.2' %}Requires Django 5{% endif %}"
   default: "3.12"
-# node_version:
-#   type: str
-#   help: Select the Node version to use
-#   choices:
-#     - "18"
-#     - "20"
-#     - "22"
-#   default: "20"
 geodjango:
   type: bool
   help: "Do you want to enable GeoDjango? GEOS and GDAL need to be installed in your system."
@@ -76,6 +68,23 @@ default_permission_class:
     - IsAuthenticatedOrReadOnly
     - IsAdminUser
   default: AllowAny
+generate_angular_project:
+  type: bool
+  help: "Do you want to generate an Angular project?"
+  default: true
+frontend_project_name:
+  type: str
+  help: "Name the Agular project:"
+  default: "my-angular-proj"
+  when: "{{ generate_angular_project }}"
+# node_version:
+#   type: str
+#   help: Select the Node version to use
+#   choices:
+#     - "18"
+#     - "20"
+#     - "22"
+#   default: "20"
 initialize_git_repo:
   type: bool
   help: "Initialize a Git repository?"
