@@ -32,6 +32,5 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./my-space/my-space.component').then((c) => c.MySpaceComponent),
     canMatch: [authenticationNeeded],
-    // canMatch: [() => inject(AuthService).isAuth()],
   },
 ];
