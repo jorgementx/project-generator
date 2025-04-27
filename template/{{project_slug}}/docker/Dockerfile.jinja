@@ -22,8 +22,7 @@ RUN <<EOT
 cd /_lock
 uv sync \
     --locked \
-    --no-dev \
-    --extra prod \
+    --all-groups --no-dev
     --no-install-project \
     --no-editable
 EOT
