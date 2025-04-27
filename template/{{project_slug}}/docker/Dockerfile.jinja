@@ -1,4 +1,5 @@
-FROM jorgementx/pythonbuild:3.12-alpine
+ARG PYTHON_VERSION={{python_version}}
+FROM jorgementx/pythonbuild:${PYTHON_VERSION}-alpine
 
 
 RUN apk update && \
