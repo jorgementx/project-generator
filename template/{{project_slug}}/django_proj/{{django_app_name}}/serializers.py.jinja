@@ -23,7 +23,7 @@ class UserInfoSerializer(serializers.ModelSerializer):
 
 
 class CustomRegistrationSerializer(RegisterSerializer):
-    def validate_username(serf, username):
+    def validate_username(self, username):
         if settings.ACCOUNT_UNIQUE_USERNAME:
             username = get_adapter().clean_username(username)
         return username
