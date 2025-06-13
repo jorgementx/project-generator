@@ -4,6 +4,7 @@ from django.apps import AppConfig
 class Config(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = '{{ django_app_name }}'
+    verbose_name = '{{ project_name }}'
 
     def ready(self):
         pass
