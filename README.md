@@ -37,6 +37,7 @@ uv run manage.py runserver
 
 > In order of priority
 
+- Prompt the user for configuration of django import / export
 - Task to automate GDAL and GEOS installation in case they are not available in the system.
 - Add django watson
 - Add super quick configuration as default with an option to do the current advanced one. Just prompt for the project name and set the defaults for everything else.
