@@ -37,6 +37,7 @@ uv run manage.py runserver
 
 > In order of priority
 
+- Stop using scss in in the angular project
 - Prompt the user for configuration of django import / export
 - Task to automate GDAL and GEOS installation in case they are not available in the system.
 - Add django watson
