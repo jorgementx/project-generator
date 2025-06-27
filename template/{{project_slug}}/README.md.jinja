@@ -7,7 +7,7 @@ This readme has been generated automatically.
 
 1. Clone the repo.
 2. Inside `django_proj/` directory, `uv sync` to let uv install the required python version (specified inside `.python-version`), generate the virtual environment and install the dependencies defined in the `pyproject.toml` file.
-3. From here you can choose to activate the virtual environment for executing `python` commands or using `uv run` before each one of them. For example: `source .venv/bin/activate` and `python manage.py runserver` VS. `uv run manage.py runserver`. Keep in mind that the activatino method is only run once while `uv run` is needed before every command to avoid using the OS' default python installation.
+3. From here you can choose to activate the virtual environment for executing `python` commands or using `uv run` before each one of them. For example: `source .venv/bin/activate` and `python manage.py runserver` VS. `uv run manage.py runserver`. Keep in mind that the activation method is only run once while `uv run` is needed before every command to avoid using the OS' default python installation.
 4. Start the database server in the port 5432 (there's a docker-compose.yaml in the root of the project: `docker-compose up -d`)
 5. Duplicate local_settings_template.py file inside django_proj/main, rename it to local_settings.py and configure the required variables.
    - In DATABASES (if the database server has been started via docker-compose the variables to configure can be checked in the provided docker-compose.yml file):

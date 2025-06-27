@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 VERSION=$(cat VERSION)
-# You should the gitlab repo's group (or change the name in case it is different). GITLAB_REPO=group/project
-GITLAB_REPO={{project_slug}}
+GITLAB_REPO={{project_slug}}  # You should prefix it with the gitlab repo's group (or change the name in case it is different). GITLAB_REPO=group/project
 
 # Check if docker-buildx is installed
 if command -v docker-buildx &> /dev/null; then
