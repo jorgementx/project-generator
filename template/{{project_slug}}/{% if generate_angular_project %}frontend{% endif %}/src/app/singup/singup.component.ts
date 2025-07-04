@@ -7,7 +7,7 @@ import { Router, RouterLink } from '@angular/router';
   selector: 'app-singup',
   imports: [FormsModule, RouterLink],
   templateUrl: './singup.component.html',
-  styleUrl: './singup.component.scss',
+  styleUrl: './singup.component.css',
 })
 export class SingupComponent {
   private auth = inject(AuthService);

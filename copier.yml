@@ -77,14 +77,15 @@ frontend_project_name:
   help: "Name the Agular project:"
   default: "my-angular-proj"
   when: "{{ generate_angular_project }}"
-# node_version:
-#   type: str
-#   help: Select the Node version to use
-#   choices:
-#     - "18"
-#     - "20"
-#     - "22"
-#   default: "20"
+node_version:
+  type: str
+  help: Select the Node version to use
+  choices:
+    - "18"
+    - "20"
+    - "22"
+  default: "20"
+  when: "{{ generate_angular_project }}"
 initialize_git_repo:
   type: bool
   help: "Initialize a Git repository?"

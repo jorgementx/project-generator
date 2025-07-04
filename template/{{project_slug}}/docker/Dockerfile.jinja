@@ -1,20 +1,55 @@
 ARG PYTHON_VERSION={{python_version}}
-FROM jorgementx/pythonbuild:${PYTHON_VERSION}-alpine
+{%- if generate_angular_project %}ARG NODE_VERSION={{node_version}}{% endif %}
+ARG APP_HOME=/home/app
+{% if generate_angular_project %}
+# ANGULAR
+FROM node:${NODE_VERSION}-alpine AS frontend-builder
+WORKDIR /usr/src/frontend-src
+COPY ./frontend .
+RUN sed -i 's/"version":\s*".*"/"version": "'"${VERSION}"'"/' package.json
+RUN npm install && npm run build
+{% endif %}
+# DJANGO + FINAL
+FROM python:${PYTHON_VERSION}-alpine
+ARG PYTHON_VERSION
+ARG APP_HOME
 
+ENV UV_LINK_MODE=copy \
+    UV_COMPILE_BYTECODE=1 \
+    UV_PYTHON_DOWNLOADS=never \
+    UV_PYTHON=python${PYTHON_VERSION} \
+    UV_PROJECT_ENVIRONMENT=${APP_HOME}/venv
+ENV PATH="${APP_HOME}/venv/bin:$PATH"
 
-RUN apk update && \
-    apk add bash nginx libgcc libpq
+RUN addgroup -S app && adduser -S app -G app
+WORKDIR ${APP_HOME}
 
-{% if geodjango -%}
-RUN apk add --no-cache geos gdal
-{%- endif %}
+# backend dependencies
+COPY ./django_proj/pyproject.toml .
+COPY ./django_proj/uv.lock .
+RUN --mount=from=ghcr.io/astral-sh/uv,source=/uv,target=/bin/uv uv sync --locked --all-groups --no-dev --no-install-project --no-editable
 
-COPY --chown=app docker/.well-known/ .well-known/
+# system wide packages
+RUN apk update && apk add bash nginx libgcc libpq
+{% if geodjango %}RUN apk add --no-cache geos gdal{% endif %}
+
+USER app
+
+# entrypoint script and supervisor configuration
 COPY --chown=app --chmod=744 docker/docker-entrypoint.sh .
 COPY --chown=app docker/supervisor.conf .
+
+# nginx
 COPY docker/nginx_conf/default.conf /etc/nginx/conf.d/default.conf
 COPY docker/nginx_conf/nginx.conf /etc/nginx/nginx.conf
+
+# backend project
 COPY --chown=app django_proj/ .
+{% if generate_angular_project %}
+# frontend project
+COPY --chown=app --from=frontend-builder /usr/src/frontend-src/dist/* frontend
+
+{% endif -%}
 
 RUN mkdir logs tmp
 

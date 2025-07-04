@@ -6,7 +6,7 @@ This readme has been generated automatically.
 ### How to run the backend for the first time
 
 1. Clone the repo.
-2. Inside `django_proj/` directory, `uv sync` to let uv install the required python version (specified inside `.python-version`), generate the virtual environment and install the dependencies defined in the `pyproject.toml` file.
+2. Inside `django_proj/` directory, run `uv sync` to let uv install the required python version (specified inside `.python-version`), generate the virtual environment and install the dependencies defined in the `pyproject.toml` file.
 3. From here you can choose to activate the virtual environment for executing `python` commands or using `uv run` before each one of them. For example: `source .venv/bin/activate` and `python manage.py runserver` VS. `uv run manage.py runserver`. Keep in mind that the activation method is only run once while `uv run` is needed before every command to avoid using the OS' default python installation.
 4. Start the database server in the port 5432 (there's a docker-compose.yaml in the root of the project: `docker-compose up -d`)
 5. Duplicate local_settings_template.py file inside django_proj/main, rename it to local_settings.py and configure the required variables.
@@ -18,7 +18,13 @@ This readme has been generated automatically.
     > In case you are creating the project from scratch, you will need to create the migrations first: `uv run manage.py makemigrations`
 7. Create a superuser: `uv run manage.py createsuperuser`
 8. All set, from now the backend development server can be started using: `uv run manage.py runserver`
+{% if generate_angular_project %}
+### How to run the fronend for the first time
 
+1. Inside `frontend/` directory, run `nvm use`. It will pick up the node version from the `.nvmrc` file.
+2. `npm install`
+3. `npm start` or `npm run dev`
+{% endif %}
 
 ### Extra
 

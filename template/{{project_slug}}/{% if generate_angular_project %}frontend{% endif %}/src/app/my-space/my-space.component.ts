@@ -20,7 +20,7 @@ interface User {
   selector: 'app-my-space',
   imports: [JsonPipe],
   templateUrl: './my-space.component.html',
-  styleUrl: './my-space.component.scss',
+  styleUrl: './my-space.component.css',
 })
 export class MySpaceComponent {
   private auth = inject(AuthService);

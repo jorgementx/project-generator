@@ -37,14 +37,12 @@ uv run manage.py runserver
 
 > In order of priority
 
-- Stop using scss in in the angular project
+- Configure `commitizen`
+- Add basic kubernetes manifests for developing with k3d + mirrord
+- Update django default version to 5.2 (lts)
 - Prompt the user for configuration of django import / export
 - Task to automate GDAL and GEOS installation in case they are not available in the system.
 - Add django watson
 - Add super quick configuration as default with an option to do the current advanced one. Just prompt for the project name and set the defaults for everything else.
-- Add support for docker image creation (if possible):
-  - dynamic entrypoint
-  - supervisor conf
-  - nginx conf
-  - dockerfile
+- Separate frontend and backend into 2 different images
 - Enable autopulling of newer images with watchtower

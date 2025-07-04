@@ -42,5 +42,11 @@ server {
         gzip_types application/json;
         access_log off;
     }
-
+{% if generate_angular_project %}
+    # Serve the frontend for any other request
+    location / {
+        root /home/app/frontend/browser/;
+        try_files $uri $uri/ /index.html;
+    }
+{% endif %}
 }
