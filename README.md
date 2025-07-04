@@ -37,12 +37,16 @@ uv run manage.py runserver
 
 > In order of priority
 
-- Configure `commitizen`
 - Add basic kubernetes manifests for developing with k3d + mirrord
 - Update django default version to 5.2 (lts)
 - Prompt the user for configuration of django import / export
-- Task to automate GDAL and GEOS installation in case they are not available in the system.
-- Add django watson
-- Add super quick configuration as default with an option to do the current advanced one. Just prompt for the project name and set the defaults for everything else.
 - Separate frontend and backend into 2 different images
+- Separate frontend and backend into 2 different git repos (optionally merge them in a single repo with git submodules)
+- Configure `commitizen`
+    - one for the backend integrated with `pyproject.toml`
+    - one for the backend integrated with `pyproject.toml`
+    - auto update version in `VERSION` file (if we decide to keep using it)
+- Add super quick configuration as default with an option to do the current advanced one. Just prompt for the project name and set the defaults for everything else.
 - Enable autopulling of newer images with watchtower
+- Add django watson
+- Task to automate GDAL and GEOS installation in case they are not available in the system (probably not a great idea and not super useful anyway)
