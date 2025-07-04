@@ -1,6 +1,6 @@
 import { httpResource } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 import { JsonPipe } from '@angular/common';
 import { AuthService } from '../shared/services/auth.service';
 
