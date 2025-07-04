@@ -18,8 +18,7 @@
         buildInputs = [
           pkgs.python{{python_version|lower|replace('.', '')}}
           pkgs.uv
-          pkgs.nodejs_18
-          pkgs.docker-buildx
+          pkgs.nodejs_{{node_version}}
         ];
 
         shellHook = ''

@@ -3,17 +3,8 @@
 VERSION=$(cat VERSION)
 GITLAB_REPO={{project_slug}}  # You should prefix it with the gitlab repo's group (or change the name in case it is different). GITLAB_REPO=group/project
 
-# Check if docker-buildx is installed
-if command -v docker-buildx &> /dev/null; then
-    DOCKER_BUILDER_CMD="docker-buildx"
-else
-    DOCKER_BUILDER_CMD="docker"
-fi
-
 if [ -z "$1" ]; then
-    $DOCKER_BUILDER_CMD build --push -t docker-registry.dev2.purpleblob.net/$GITLAB_REPO:$VERSION -f docker/Dockerfile .
-elif [ "$1" == "build" ]; then
-    $DOCKER_BUILDER_CMD build -t docker-registry.dev2.purpleblob.net/$GITLAB_REPO:$VERSION -f docker/Dockerfile .
+    docker build -t docker-registry.dev2.purpleblob.net/$GITLAB_REPO:$VERSION -f docker/Dockerfile .
 elif [ "$1" == "push" ]; then
-    docker push docker-registry.dev2.purpleblob.net/$GITLAB_REPO:$VERSION
+    docker build --push -t docker-registry.dev2.purpleblob.net/$GITLAB_REPO:$VERSION -f docker/Dockerfile .
 fi
