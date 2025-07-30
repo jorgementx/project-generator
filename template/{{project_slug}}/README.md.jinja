@@ -26,6 +26,45 @@ This readme has been generated automatically.
 3. `npm start` or `npm run dev`
 {% endif %}
 
+### In  VS Code
+
+There are some tasks configured inside `.vscode/tasks.json` and 3 launch configurations inside `.vscode/launch.json`.
+The tasks can be run in vscode via the command pallete > "Tasks: Run Task". There you can select some common tasks used on a daily basis in a django project development like:
+- Start docker compose
+- Sync python dependencies (install dependencies from pyproject.toml, create virtual env...)
+- Migrations: make and apply them
+- Create superuser
+
+You can start all 3 `docker compose`, backend server and frontend server in the "Run and Debug" section of VS Code by selecting the proper one and pressing F5 (or the "Play" icon).
+
+#### You have already everything configured and just opened the project to keep working on it
+
+1. Press (fn+)F5 to start the servers and the docker compose
+
+#### You cloned the project
+
+1. Run the task to Sync python dependencies
+2. Configure the newly created python environment inside vscode
+3. Run the task to Start the docker compose
+4. Run the task to Apply django migrations
+5. In case there is a frontend install its dependencies too
+6. Run the server(s) with F5
+(7. Run the task to Create superuser)
+
+#### You just created the project
+
+1. Run the task to Sync python dependencies
+2. Configure the newly created python environment inside vscode
+3. Run the task to Start the docker compose
+4. Run the task to Create django migrations
+5. Run the task to Apply django migrations
+5. In case there is a frontend install its dependencies too
+6. Run the server(s) with F5
+(7. Run the task to Create superuser)
+
+> The steps specified in the section [How to run the backend for the first time](#how-to-run-the-backend-for-the-first-time) can be followed in any case.
+
+
 ### Extra
 
 There is a `flake.nix` in the root of the project. You can start a dev shell with `uv`, and `python {{python_version}}` by running `nix develop`. It will also start the PostgreSQL database using docker.
