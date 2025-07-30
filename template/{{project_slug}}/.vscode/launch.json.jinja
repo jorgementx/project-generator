@@ -1,0 +1,39 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    // Backend
+    {
+      "name": "Django Backend",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/django_proj/manage.py",
+      "args": ["runserver"],
+      "console": "integratedTerminal",
+      "env": {
+        "PYTHONUNBUFFERED": "1"
+      },
+      "justMyCode": true,
+      "preLaunchTask": "Start Docker Compose"
+    },
+
+    {% if generate_angular_project %}// Frontend
+    {
+      "name": "Angular Frontend",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/frontend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "console": "integratedTerminal"
+    }{% endif %}
+  ],
+
+  // Fullstack
+  "compounds": [
+    {
+      "name": "Fullstack: Docker + Django + Angular",
+      "configurations": ["Django Backend", "Angular Frontend"],
+      "stopAll": true
+    }
+  ]
+}

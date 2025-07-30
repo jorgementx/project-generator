@@ -68,6 +68,10 @@ default_permission_class:
     - IsAuthenticatedOrReadOnly
     - IsAdminUser
   default: AllowAny
+use_email_as_username:
+  type: bool
+  help: "Do you want to use the email as username?"
+  default: true
 generate_angular_project:
   type: bool
   help: "Do you want to generate an Angular project?"
