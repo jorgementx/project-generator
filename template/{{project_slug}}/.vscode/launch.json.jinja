@@ -15,7 +15,6 @@
       "justMyCode": true,
       "preLaunchTask": "Start Docker Compose"
     },
-
     {% if generate_angular_project %}// Frontend
     {
       "name": "Angular Frontend",
@@ -31,8 +30,8 @@
   // Fullstack
   "compounds": [
     {
-      "name": "Fullstack: Docker + Django + Angular",
-      "configurations": ["Django Backend", "Angular Frontend"],
+      "name": "Fullstack: Docker + Django{% if generate_angular_project %} + Angular{% endif %}",
+      "configurations": ["Django Backend"{% if generate_angular_project %}, "Angular Frontend"{% endif %}],
       "stopAll": true
     }
   ]

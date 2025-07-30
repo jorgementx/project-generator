@@ -19,6 +19,33 @@
         "cwd": "${workspaceFolder}/django_proj"
       },
       "problemMatcher": []
-    }
+    },
+        {
+      "label": "Create Django Superuser",
+      "type": "shell",
+      "command": "uv run manage.py createsuperuser",
+      "options": {
+        "cwd": "${workspaceFolder}/django_proj"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Make Django Migrations",
+      "type": "shell",
+      "command": "uv run manage.py makemigrations",
+      "options": {
+        "cwd": "${workspaceFolder}/django_proj"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Apply Django Migrations",
+      "type": "shell",
+      "command": "uv run manage.py migrate",
+      "options": {
+        "cwd": "${workspaceFolder}/django_proj"
+      },
+      "problemMatcher": []
+    },
   ]
 }
