@@ -27,7 +27,7 @@ server {
     }
 
     # Serve Django mediafiles
-    location /media/ {
+    location /uploads/ {
         expires 1h;
         add_header Cache-Control "public";
         alias /home/app/mediafiles/;

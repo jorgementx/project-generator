@@ -12,6 +12,12 @@
       }
     },
     {
+      "label": "Stop Docker Compose",
+      "type": "shell",
+      "command": "docker compose down",
+      "problemMatcher": [],
+    },
+    {
       "label": "Sync Python Dependencies",
       "type": "shell",
       "command": "uv sync",
