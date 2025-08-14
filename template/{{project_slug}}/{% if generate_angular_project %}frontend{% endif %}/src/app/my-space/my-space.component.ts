@@ -24,7 +24,7 @@ interface User {
 })
 export class MySpaceComponent {
   private auth = inject(AuthService);
-  userResource = httpResource<User>(() => `${environment.backendUrl}/api/me/`);
+  userResource = httpResource<User>(() => `${environment.backendUrl}/api/users/me/`);
 
   externalResource = httpResource(() => ({
     url: 'https://jsonplaceholder.typicode.com/users/1',

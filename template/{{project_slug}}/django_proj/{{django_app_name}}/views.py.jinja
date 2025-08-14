@@ -1,23 +1,41 @@
-from django.http import HttpResponse
-from django.apps import apps
+import logging
 
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.decorators import api_view, permission_classes
+from django.apps import apps
+from rest_framework.permissions import BasePermission, IsAdminUser
+from rest_framework.decorators import action
+from rest_framework.viewsets import ModelViewSet
 
 from {{ django_app_name }}.serializers import *
 from {{ django_app_name }}.models import *
-
-import logging
 
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-@api_view()
-@permission_classes([IsAuthenticated])
-def user_info(request):
-    user = request.user
-    serializer = UserInfoSerializer(user)
-    return Response(serializer.data)
+
+class IsAdminOrIsSelf(BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return (request.user and request.user.is_staff) or obj == request.user
+
+
+class UserViewSet(ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    def get_permissions(self):
+        if self.action == "partial_update" or self.action == "retireve":
+            permission_classes = [IsAdminOrIsSelf]
+        else:
+            permission_classes = [IsAdminUser]
+        return [permission() for permission in permission_classes]
+
+    # NOTE: This is a kind of hacky solution. Explanation: We set the detail to False so the generated endpoint doesn't expect us to pass in a PK inside the URL. Then we override get_object method to always return the user making the request, so retrieve and partial_update have a user work with.
+    @action(detail=False, methods=["GET", "PATCH"])
+    def me(self, request):
+        self.get_object = lambda: request.user
+
+        match request.method:
+            case "GET":
+                return self.retrieve(request)
+            case "PATCH":
+                return self.partial_update(request)
