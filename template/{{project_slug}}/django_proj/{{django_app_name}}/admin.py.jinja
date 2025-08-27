@@ -3,8 +3,16 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from unfold.admin import ModelAdmin
 from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
 {% if use_email_as_username %}from django.utils.translation import gettext_lazy as _{% endif %}
+from django.apps import apps
 
 from .models import User
+
+
+for app_config in apps.get_app_configs():
+    for model in app_config.get_models():
+        if admin.site.is_registered(model):
+            admin.site.unregister(model)
+            admin.site.register(model, ModelAdmin)
 
 
 @admin.register(User)
