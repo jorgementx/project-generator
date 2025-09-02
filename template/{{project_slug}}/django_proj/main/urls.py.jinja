@@ -42,7 +42,7 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += [
-        re_path(r'^media/(?P<path>.*)$', serve, {
+        re_path(r'^uploads/(?P<path>.*)$', serve, {
             'document_root': os.path.join(Path(__file__).parent.resolve().parent, 'mediafiles/'),
         }),
         path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
