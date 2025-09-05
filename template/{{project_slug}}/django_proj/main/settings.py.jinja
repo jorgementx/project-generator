@@ -14,6 +14,8 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 DEBUG = env('DEBUG')
 
+LOG_LEVEL = env('LOG_LEVEL', default='DEBUG' if DEBUG else 'INFO').upper()
+
 SECRET_KEY = env('SECRET_KEY')
 
 # Application definition
@@ -162,6 +164,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = []
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGIN_REGEXES = [".*"]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': LOG_LEVEL,
+    },
+}
 
 # Email configuration
 EMAIL_CONFIG = env.email(
