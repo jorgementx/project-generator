@@ -4,7 +4,7 @@ VERSION=$(cat VERSION)
 GITLAB_REPO={{project_slug}}  # You should prefix it with the gitlab repo's group (or change the name in case it is different). GITLAB_REPO=group/project
 
 if [ -z "$1" ]; then
-    docker build -t docker-registry.dev2.purpleblob.net/$GITLAB_REPO:$VERSION -f docker/Dockerfile .
+    docker build --build-arg PYTHON_VERSION=`cat django_proj/.python-version` {{% if generate_angular_project %}}--build-arg NODE_VERSION=`cat frontend/.nvmrc` {{% endif %}}-t docker-registry.dev2.purpleblob.net/$GITLAB_REPO:$VERSION -f docker/Dockerfile .
 elif [ "$1" == "push" ]; then
-    docker build --push -t docker-registry.dev2.purpleblob.net/$GITLAB_REPO:$VERSION -f docker/Dockerfile .
+    docker build --build-arg PYTHON_VERSION=`cat django_proj/.python-version` {{% if generate_angular_project %}}--build-arg NODE_VERSION=`cat frontend/.nvmrc` {{% endif %}}--push -t docker-registry.dev2.purpleblob.net/$GITLAB_REPO:$VERSION -f docker/Dockerfile .
 fi
