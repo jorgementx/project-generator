@@ -1,5 +1,5 @@
 ARG PYTHON_VERSION={{python_version}}
-{%- if generate_angular_project %}ARG NODE_VERSION={{node_version}}{% endif %}
+{% if generate_angular_project %}ARG NODE_VERSION={{node_version}}{% endif %}
 ARG APP_HOME=/home/app
 {% if generate_angular_project %}
 # ANGULAR
