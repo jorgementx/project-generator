@@ -22,7 +22,7 @@ class UserViewSet(ModelViewSet):
     serializer_class = UserSerializer
 
     def get_permissions(self):
-        if self.action == "partial_update" or self.action == "retireve":
+        if self.action == "partial_update" or self.action == "retrieve":
             permission_classes = [IsAdminOrIsSelf]
         else:
             permission_classes = [IsAdminUser]
