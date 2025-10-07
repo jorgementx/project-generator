@@ -1,20 +1,14 @@
 [![Copier](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/copier-org/copier/master/img/badge/badge-grayscale-inverted-border-purple.json)](https://github.com/copier-org/copier)
 
+## Requirements
+
+`uv` or `pipx` to install or use the copier python package globally.
+
+
 ## How to use
 
 ```
-copier copy --trust git@dev2.purpleblob.net:purpleblob/django-project-generator.git .
-```
-> More information and project structure in our [wiki](https://wiki.purpleblob.net/es/coding/project-generator)
-
-## Requirements
-
-- Having `pipx` installed in the system is strongly suggested. If it is not an option check the [official documentation](https://copier.readthedocs.io/en/stable/#installation) for alternatives.
-
-## Installation
-
-```
-pipx install copier
+uvx copier copy --trust git@dev2.purpleblob.net:purpleblob/django-project-generator.git .
 ```
 
 ## Postinstall
@@ -44,7 +38,7 @@ uv run manage.py runserver
 - Separate frontend and backend into 2 different git repos (optionally merge them in a single repo with git submodules)
 - Configure `commitizen`
     - one for the backend integrated with `pyproject.toml`
-    - one for the backend integrated with `pyproject.toml`
+    - one for the frontend
     - auto update version in `VERSION` file (if we decide to keep using it)
 - Add super quick configuration as default with an option to do the current advanced one. Just prompt for the project name and set the defaults for everything else.
 - Enable autopulling of newer images with watchtower
