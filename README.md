@@ -7,6 +7,11 @@ copier copy --trust git@dev2.purpleblob.net:purpleblob/django-project-generator.
 ```
 > More information and project structure in our [wiki](https://wiki.purpleblob.net/es/coding/project-generator)
 
+Or to avoid installing:
+```
+uvx copier copy --trust git@dev2.purpleblob.net:purpleblob/django-project-generator.git .
+```
+
 ## Requirements
 
 - Having `pipx` installed in the system is strongly suggested. If it is not an option check the [official documentation](https://copier.readthedocs.io/en/stable/#installation) for alternatives.
@@ -36,6 +41,9 @@ uv run manage.py runserver
 ## TODOs:
 
 > In order of priority
+
+- Update the frontend project to use angular 20. With the new project structure and naming conventions.
+  > The emaus project is already maually updated to angular 20 (not fully compliant with the new naming conventions or project structure though)
 
 - Add basic kubernetes manifests for developing with k3d + mirrord
 - Update django default version to 5.2 (lts)
