@@ -31,6 +31,9 @@ uv run manage.py runserver
 
 > In order of priority
 
+- Update the frontend project to use angular 20. With the new project structure and naming conventions.
+  > The emaus project is already maually updated to angular 20 (not fully compliant with the new naming conventions or project structure though)
+
 - Add basic kubernetes manifests for developing with k3d + mirrord
 - Update django default version to 5.2 (lts)
 - Prompt the user for configuration of django import / export
