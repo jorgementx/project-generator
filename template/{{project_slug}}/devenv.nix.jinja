@@ -1,0 +1,80 @@
+{ pkgs, lib, config, inputs, ... }:
+
+{
+  # dotenv.enable = true;
+
+  # https://devenv.sh/packages/
+  packages = [
+    pkgs.nodejs_{{ node_version }}
+    pkgs.uv
+    pkgs.nodePackages."@angular/cli"
+  ];
+
+  languages.python = {
+    enable = true;
+    package = pkgs.python{{ python_version | replace('.', '') }};
+
+    uv.enable = false; # TODO: uv can't find shared object files. The current alternative is to install uv as package instead of enabling it as part of python language configuration.
+    uv.sync.enable = false;
+    uv.sync.arguments = ["--project ${config.git.root}/backend/"];  # FIXME: this doesn't seem to work. Try to make devenv composable, one per project (front and back)
+  };
+
+  languages.typescript.enable = true;
+
+  services.postgres = {
+    enable = true;
+    package = pkgs.postgresql_{{ postgres_version }};
+    listen_addresses = "localhost";
+    initialDatabases = [
+      {
+        name = "{{ project_slug }}";
+        user = "{{ db_user }}";
+        pass = "{{ db_password }}";
+        initialSQL = ''
+          ALTER SCHEMA public OWNER TO {{ db_user }};
+        '';
+      }
+    ];
+    {% if geodjango %}
+    extensions = [
+      extensions.postgis
+    ];
+    {% endif %}
+  };
+
+  services.caddy = {
+    enable = true;
+    config = ''
+      {
+        auto_https off
+        debug
+      }
+
+      http://localhost:8080 {
+          # --- Django backend routes ---
+          @django {
+              path /admin* /api* /static* /media*
+          }
+          reverse_proxy @django localhost:8000
+          {% if generate_angular_project %} 
+          # --- Angular frontend routes ---
+          @frontend {
+              not path @django
+          }
+          reverse_proxy @frontend localhost:3000
+          {% endif %}
+      }
+    '';
+  };
+
+  processes.backend = {
+    exec = "uv run manage.py runserver";
+    cwd = "${config.git.root}/backend";
+  };
+  {% if generate_angular_project %}
+  processes.frontend = {
+    exec = "npm run dev";
+    cwd = "${config.git.root}/frontend";
+  };
+  {% endif %}
+}
