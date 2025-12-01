@@ -23,7 +23,7 @@
 
   services.postgres = {
     enable = true;
-    package = pkgs.postgresql_{{ postgres_version }};
+    package = pkgs.postgresql{% if postgres_version != 'latest' %}_{{ postgres_version }}{% endif %};
     listen_addresses = "localhost";
     initialDatabases = [
       {
@@ -56,7 +56,7 @@
               path /admin* /api* /static* /media*
           }
           reverse_proxy @django localhost:8000
-          {% if generate_angular_project %} 
+          {% if generate_angular_project %}
           # --- Angular frontend routes ---
           @frontend {
               not path @django
@@ -67,9 +67,12 @@
     '';
   };
 
+  process.managers.mprocs.enable = true;
+  process.managers.process-compose.enable = false;
+
   processes.backend = {
     exec = "uv run manage.py runserver";
-    cwd = "${config.git.root}/backend";
+    cwd = "${config.git.root}/django_proj";
   };
   {% if generate_angular_project %}
   processes.frontend = {
