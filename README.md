@@ -35,7 +35,6 @@ uv run manage.py runserver
   > The emaus project is already maually updated to angular 20 (not fully compliant with the new naming conventions or project structure though)
 
 - Add basic kubernetes manifests for developing with k3d + mirrord
-- Update django default version to 5.2 (lts)
 - Prompt the user for configuration of django import / export
 - Separate frontend and backend into 2 different images
 - Separate frontend and backend into 2 different git repos (optionally merge them in a single repo with git submodules)
