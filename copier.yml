@@ -10,9 +10,9 @@ project_slug:
   help: "Set a new name if you want ot rename the parent directory."
   default: "{{ project_name|lower|replace(' ', '_') }}"
   validator: >-
-        {% if not (project_slug | regex_search('^[a-z][a-z0-9\-\_]+$')) %}
-        project_slug must be snake_case or kebab-case (all lowercase).
-        {% endif %}
+    {% if not (project_slug | regex_search('^[a-z][a-z0-9\-\_]+$')) %}
+    project_slug must be snake_case or kebab-case (all lowercase).
+    {% endif %}
 django_app_name:
   type: str
   help: "What is the name of the main Django app?"
@@ -21,21 +21,22 @@ django_version:
   type: str
   help: "Select the Django version to use"
   choices:
-    lts (4.2): &django_lts "4.2"
-    latest: "latest"
+    5.2 (lts): &django_lts "5.2"
+    4.2 (lts): "4.2"
   default: *django_lts
 python_version:
   type: str
   help: Select the Python version to use
   choices:
-    "3.10":
-      value: "3.10"
     "3.11":
       value: "3.11"
     "3.12":
       value: "3.12"
     "3.13":
       value: "3.13"
+      validator: "{% if django_version == '4.2' %}Requires Django 5{% endif %}"
+    "3.14":
+      value: "3.14"
       validator: "{% if django_version == '4.2' %}Requires Django 5{% endif %}"
   default: "3.12"
 geodjango:
