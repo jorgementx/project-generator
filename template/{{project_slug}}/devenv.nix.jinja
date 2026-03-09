@@ -7,7 +7,6 @@
   packages = [
     pkgs.nodejs_{{ node_version }}
     pkgs.uv
-    pkgs.nodePackages."@angular/cli"
   ];
 
   languages.python = {
@@ -67,8 +66,7 @@
     '';
   };
 
-  process.managers.mprocs.enable = true;
-  process.managers.process-compose.enable = false;
+  process.manager.implementation = "mprocs";
 
   processes.backend = {
     exec = "uv run manage.py runserver";
